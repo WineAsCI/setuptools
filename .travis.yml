@@ -1,0 +1,15 @@
+language: python
+python: 2.7
+env:
+  - WINEENV=py26
+  - WINEENV=py27
+  - WINEENV=py33
+  - WINEENV=py34
+  - WINEENV=pypy
+before_install:
+  - git clone https://github.com/WineAsCI/python-lib-template.git
+  - python-lib-template/.travis-setup.sh
+  - hg clone https://bitbucket.org/pypa/setuptools
+install:
+    - ./_pip install mock pytest
+script: cd setuptools && ../_python setup.py ptr
